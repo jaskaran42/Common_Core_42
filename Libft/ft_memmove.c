@@ -6,7 +6,7 @@
 /*   By: jmehmy < jmehmy@student.42lisboa.com >     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:01:29 by jmehmy            #+#    #+#             */
-/*   Updated: 2024/11/06 17:36:05 by jmehmy           ###   ########.fr       */
+/*   Updated: 2024/11/13 19:57:05 by jmehmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,43 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t			i;
-	size_t			j;
-	unsigned char	*d;
-	unsigned char	*s;
+	size_t	i;
+	char	*d;
+	char	*s;
 
-	i = 0;
-	j = 1;
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
+	d = (char *)dest;
+	s = (char *)src;
 	if (dest == NULL && src == NULL)
 		return (NULL);
 	if (dest > src)
 	{
-		j = -1;
-		d += n - 1;
-		s += n - 1;
+		while (n-- > 0)
+			d[n] = s[n];
 	}
-	while (i < n)
+	else
 	{
-		*d = *s;
-		d += j;
-		s += j;
-		i++;
+		i = 0;
+		while (i < n)
+		{
+			d[i] = s[i];
+			i++;
+		}
 	}
 	return (dest);
 }
+/*#include <stdio.h>
+
+int	main(void) {
+	char dest[] = "Hello, World!";
+	ft_memmove(dest + 7, dest, 5);
+
+	printf("dest %s\n", dest);
+
+	char dest1[] = "Hello, World!";
+
+	ft_memmove(dest1, dest1 + 7, 6);
+	printf("dest1 %s\n", dest1);
+
+	return (0);
+}
+*/

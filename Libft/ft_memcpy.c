@@ -6,7 +6,7 @@
 /*   By: jmehmy < jmehmy@student.42lisboa.com >     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:52:10 by jmehmy            #+#    #+#             */
-/*   Updated: 2024/11/06 17:36:01 by jmehmy           ###   ########.fr       */
+/*   Updated: 2024/11/13 20:05:16 by jmehmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	size_t	i;
 
 	i = 0;
-	if (dest == NULL && src == NULL)
-		return (dest);
 	if (dest != src)
 	{
 		while (i < n)
