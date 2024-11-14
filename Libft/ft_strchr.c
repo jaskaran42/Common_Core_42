@@ -6,7 +6,7 @@
 /*   By: jmehmy < jmehmy@student.42lisboa.com >     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:52:35 by jmehmy            #+#    #+#             */
-/*   Updated: 2024/11/06 17:36:14 by jmehmy           ###   ########.fr       */
+/*   Updated: 2024/11/14 18:03:02 by jmehmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != (char)c)
+	int	i;
+
+	i = 0;
+	while (s[i] != (char)c)
 	{
-		if (*s == '\0')
+		if (s[i] == '\0')
 			return (NULL);
-		s++;
+		i++;
 	}
-	return ((char *)s);
+	return ((char *)(s + i));
 }
 /*
 int main ()
