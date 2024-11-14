@@ -6,7 +6,7 @@
 /*   By: jmehmy < jmehmy@student.42lisboa.com >     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 18:54:13 by jmehmy            #+#    #+#             */
-/*   Updated: 2024/11/11 19:15:33 by jmehmy           ###   ########.fr       */
+/*   Updated: 2024/11/14 20:18:16 by jmehmy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 static int	count_words(const char *str, char delimiter)
 {
 	int	i;
-	int	count_words;
+	int	count;
 
 	i = 0;
-	count_words = 0;
+	count = 0;
 	while (str[i] != '\0')
 	{
 		while (str[i] == delimiter)
 			i++;
 		if (str[i] != '\0')
-			count_words++;
+			count++;
 		while (str[i] != '\0' && str[i] != delimiter)
 			i++;
 	}
-	return (count_words);
+	return (count);
 }
 
 static int	find_next_word(const char *str, char delimiter, int *start,
@@ -71,7 +71,7 @@ static void	ft_allocate(char **tab, const char *str, char delimiter)
 	end = 0;
 	while (find_next_word(str, delimiter, &start, &end))
 	{
-		tab[word] = malloc((end - start + 1) * sizeof(char ));
+		tab[word] = malloc((end - start + 1) * sizeof(char));
 		if (tab[word] != NULL)
 		{
 			copy_words(tab[word], str, start, end);
@@ -83,9 +83,11 @@ static void	ft_allocate(char **tab, const char *str, char delimiter)
 
 char	**ft_split(const char *s, char c)
 {
+	int		i;
 	int		size;
 	char	**new_s;
 
+	i = 0;
 	if (s == NULL)
 		return (NULL);
 	size = count_words(s, c);
@@ -93,5 +95,14 @@ char	**ft_split(const char *s, char c)
 	if (new_s == NULL)
 		return (NULL);
 	ft_allocate(new_s, s, c);
+	while (i < size)
+	{
+		if (new_s[i] == NULL)
+		{
+			free(new_s);
+			return (NULL);
+		}
+		i++;
+	}
 	return (new_s);
 }
